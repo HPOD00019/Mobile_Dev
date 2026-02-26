@@ -19,4 +19,4 @@ Play button:
 ## Documentation
 
 ### [Page Navigation Docs](/docs/nav-system.md)
-### [Page Navigation Docs](/docs/TZ.md)
+### [Техническое задание](/docs/TZ.md)
