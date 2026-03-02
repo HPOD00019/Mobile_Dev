@@ -1,1 +1,7 @@
-include: package:flutter_lints/flutter.yaml
+stages:
+  - build
+
+build_job:
+  stage: build
+  script:
+    - echo "Привет из конвейера GitFlic!"
