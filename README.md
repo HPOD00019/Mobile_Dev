@@ -1,8 +1,9 @@
 # Crossplatform Chess Application
 
 ## Стек технологий
--Dart
--Flutter
+
+- Dart
+- Flutter
 
 ## Обзор
 
