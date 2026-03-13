@@ -1,22 +1,31 @@
 # Crossplatform Chess Application
 
-## Overview
+##Стек технологий
+-Dart
+-Flutter
 
-### Bot Selection Screen:
+## Обзор
 
-Options for every bot's difficulty.
+### Выбор сложности:
 
-- Easiest selected by default.
+Опции для каждого уровня сложности.
 
-Play button:
-- Redirects to Match Screen on click.
+Кнопка "Играть":
+- Перенаправляет на Match Screen.
 
-## Team Workflow
+## Командный Workflow
 
 ### [Frontend](/docs/dev-workflow-frontend.md)
 ### [Backend](/docs/dev-workflow-backend.md)
 
-## Documentation
+## Документация
 
 ### [Page Navigation Docs](/docs/nav-system.md)
 ### [Техническое задание](/docs/TZ.md)
+
+##Авторы
+Ведров Артем
+Филимонов Алексей
+Пылев Максим
+Собенин Михаил
+Кочетков Иван
