@@ -1,0 +1,73 @@
+image: cirrusci/flutter:stable  
+
+stages:
+  - analyze
+  - test
+  - build
+
+variables:
+  FLUTTER_VERSION: "3.24.x"       
+  JAVA_VERSION: "17"
+cache:
+  key:
+    files:
+      - pubspec.lock
+      - android/build.gradle
+      - android/app/build.gradle
+  paths:
+    - .pub-cache/
+    - build/
+    - android/.gradle/
+
+analyze-and-test:
+  stage: analyze
+  tags:
+    - flutter        
+
+  before_script:
+    - flutter --version
+    - dart --version
+    - flutter pub get
+
+  script:
+    - dart format --set-exit-if-changed .
+
+    - flutter analyze --fatal-infos
+
+  artifacts:
+    when: always
+    paths:
+      - coverage/
+
+test:
+  stage: test
+  tags:
+    - flutter
+
+  script:
+    - flutter test --machine --coverage --test-randomize-ordering-seed random
+
+  artifacts:
+    when: always
+    paths:
+      - coverage/lcov.info
+
+build-android:
+  stage: build
+  tags:
+    - flutter
+  needs: ["analyze-and-test", "test"]
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "master"'
+      when: on_success
+    - when: never
+
+  script:
+    - flutter build apk --debug --split-per-abi
+    - flutter build appbundle --release
+
+  artifacts:
+    paths:
+      - build/app/outputs/flutter-apk/app-*.apk
+      - build/app/outputs/bundle/release/app-release.aab
+    when: always
