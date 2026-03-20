@@ -3,5 +3,6 @@ stages:
 
 build_job:
   stage: build
-  script:
-    - echo "Привет из конвейера GitFlic!"
+  scripts:
+    - flutter pub get
+    - flutter build windows --release
