@@ -30,6 +30,7 @@ dependencies:
   
   # Board UI 
   chessground: ^9.0.0
+  dartchess: ^0.12.2
   
   
 

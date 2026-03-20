@@ -186,7 +186,7 @@ packages:
     source: hosted
     version: "3.1.7"
   dartchess:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: dartchess
       sha256: "8fb02ace74e9e27c16961010ffb3a2fcf14d6297fa7f530f09f480aa4c9759b8"

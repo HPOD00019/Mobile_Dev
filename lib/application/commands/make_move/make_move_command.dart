@@ -17,3 +17,4 @@ class MakeMoveCommand
     final String sessionId;
     final String fen;
 }
+

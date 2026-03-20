@@ -12,6 +12,12 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
+import '../application/commands/make_move/make_move_command_handler.dart'
+    as _i681;
+import '../application/queries/get_current_fen/get_current_fen_queary_handler.dart'
+    as _i99;
+import '../application/queries/get_session/get_session_queary_handler.dart'
+    as _i326;
 import '../core/api/chess_api.dart' as _i793;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -21,6 +27,15 @@ extension GetItInjectableX on _i174.GetIt {
     _i526.EnvironmentFilter? environmentFilter,
   }) {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
+    gh.factory<_i681.MakeMoveCommandHandler>(
+      () => _i681.MakeMoveCommandHandler(),
+    );
+    gh.factory<_i99.GetCurrentFenQuearyHandler>(
+      () => _i99.GetCurrentFenQuearyHandler(),
+    );
+    gh.factory<_i326.GetSessionQuearyHandler>(
+      () => _i326.GetSessionQuearyHandler(),
+    );
     gh.lazySingleton<_i793.ChessApi>(() => _i793.ChessApi());
     return this;
   }

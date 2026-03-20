@@ -1,7 +1,21 @@
+import 'package:chess/app.dart';
+import 'package:chess/application/queries/get_session/get_session_queary.dart';
+import 'package:chess/application/queries/get_session/get_session_queary_handler.dart';
+import 'package:chess/di/injection.dart';
 import 'package:flutter/material.dart';
+import 'package:streamline/streamline.dart';
 
 void main() {
-  runApp(const MainApp());
+  injectDependencies();
+  runApp(
+    MediatorConfig(
+      queryHandlers: {
+        GetSessionQueary: () => getIt.get<GetSessionQuearyHandler>(),
+      },
+      commandHandlers: {},
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -9,6 +23,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return ChessApp();
   }
 }
