@@ -22,9 +22,10 @@ cache:
 analyze-and-test:
   stage: analyze
   tags:
-    - flutter        
+    - flutter
 
   before_script:
+    - cd ChessApp
     - flutter --version
     - dart --version
     - flutter pub get
@@ -45,6 +46,7 @@ test:
     - flutter
 
   script:
+    - cd ChessApp
     - flutter test --machine --coverage --test-randomize-ordering-seed random
 
   artifacts:
@@ -63,11 +65,12 @@ build-android:
     - when: never
 
   script:
+    - cd ChessApp
     - flutter build apk --debug --split-per-abi
     - flutter build appbundle --release
 
   artifacts:
     paths:
-      - build/app/outputs/flutter-apk/app-*.apk
-      - build/app/outputs/bundle/release/app-release.aab
+      - ChessApp/build/app/outputs/flutter-apk/app-*.apk
+      - ChessApp/build/app/outputs/bundle/release/app-release.aab
     when: always
