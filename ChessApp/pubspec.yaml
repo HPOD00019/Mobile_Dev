@@ -40,8 +40,12 @@ dev_dependencies:
   flutter_lints: ^6.0.0
   
   build_runner: ^2.13.0
+  build_verify: 3.1.1
+  
   dart_mappable_builder: ^4.7.0
   injectable_generator: ^2.12.1
+  
+  go_router_builder: 4.2.0
   
 flutter:
   uses-material-design: true
