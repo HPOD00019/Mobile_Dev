@@ -28,14 +28,14 @@ final class _ChessBoard extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    
-    final double screenWidth = MediaQuery.of(context).size.width;
-    final double screenHeight = MediaQuery.of(context).size.height;
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double boardSize = min(
+          constraints.maxWidth,
+          constraints.maxHeight,
+        );
 
-    final double boardSize = min(screenHeight, screenWidth) - 64;
-
-    return Center(
-        child: Chessboard(
+        return Chessboard(
           size: boardSize,
           orientation: session.playerSide.getOrientetion(session.turn),
           fen: session.fen.value,
@@ -46,7 +46,10 @@ final class _ChessBoard extends StatelessWidget{
             promotionMove: null,
             onMove: onMoveCallback,
             onPromotionSelection: onPieceSelectedCallback,
-        )));
+          ),
+        );
+      },
+    );
   }
 }
 

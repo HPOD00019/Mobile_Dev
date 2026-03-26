@@ -1,4 +1,4 @@
-import 'package:chess/ui/widgets/chess_board.dart';
+import 'package:chess/routing/app_router.dart';
 import 'package:flutter/material.dart';
 
 final class ChessApp extends StatelessWidget {
@@ -6,10 +6,11 @@ final class ChessApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text("Chess")),
-        body: ChessBoard(),
+    return MaterialApp.router(
+      routerConfig: appRouter,
+      builder: (context, child) => Scaffold(
+        appBar: AppBar(title: const Text("Chess")),
+        body: child ?? const SizedBox.shrink(),
       ),
     );
   }

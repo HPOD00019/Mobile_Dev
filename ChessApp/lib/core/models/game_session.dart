@@ -4,17 +4,28 @@ import 'package:dartchess/dartchess.dart';
 typedef SessionId = ({String value});
 typedef Fen = ({String value});
 
+final class BotDifficulty {
+  final int level;
+  const BotDifficulty({required this.level});
+
+  @override
+  String toString() => level.toString();
+}
+
 final class GameSession {
   final SessionId sessionId;
   final Side turn;
   final PlayerSide playerSide;
   final Fen fen;
+  final BotDifficulty difficulty;
     
   const GameSession({
     required this.sessionId, 
     required this.turn,
     required this.playerSide,
-    required this.fen});
+    required this.fen,
+    this.difficulty = const BotDifficulty(level: 1),
+  });
 }
 
 extension PlayerSideExtensions on PlayerSide {

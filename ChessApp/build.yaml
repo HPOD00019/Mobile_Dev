@@ -7,3 +7,5 @@ targets:
         enabled: true
       streamline_generator:
         enabled: true
+      go_router_builder:
+        enabled: true
