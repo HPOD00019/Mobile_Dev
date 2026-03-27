@@ -1,4 +1,10 @@
 import 'package:chess/app.dart';
+import 'package:chess/application/commands/confirm_bot_selection/play_with_bot_command.dart';
+import 'package:chess/application/commands/confirm_bot_selection/play_with_bot_command_handler.dart';
+import 'package:chess/application/queries/get_bots/get_bots_query.dart';
+import 'package:chess/application/queries/get_bots/get_bots_query_handler.dart';
+import 'package:chess/application/queries/get_opponent/get_opponent_query.dart';
+import 'package:chess/application/queries/get_opponent/get_opponent_query_handler.dart';
 import 'package:chess/application/queries/get_session/get_session_queary.dart';
 import 'package:chess/application/queries/get_session/get_session_queary_handler.dart';
 import 'package:chess/di/injection.dart';
@@ -11,8 +17,12 @@ void main() {
     MediatorConfig(
       queryHandlers: {
         GetSessionQueary: () => getIt.get<GetSessionQuearyHandler>(),
+        GetOpponentQuery: () => getIt.get<GetOpponentQueryHandler>(),
+        GetBotsQuery: () => getIt.get<GetBotsQueryHandler>()
       },
-      commandHandlers: {},
+      commandHandlers: {
+        PlayWithBotCommand: () => getIt.get<PlayWithBotCommandHandler>(),
+      },
       child: const MainApp(),
     ),
   );
