@@ -1,4 +1,4 @@
-import 'package:chess/application/commands/confirm_bot_selection/play_with_bot_command.dart';
+import 'package:chess/application/commands/play_with_bot/play_with_bot_command.dart';
 import 'package:chess/application/queries/get_bots/get_bots_query.dart';
 import 'package:chess/core/models/opponent.dart';
 import 'package:flutter/material.dart';

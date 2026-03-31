@@ -35,20 +35,19 @@ mixin $BotSelectScreenRoute on GoRouteData {
 }
 
 RouteBase get $gameScreenRoute => GoRouteData.$route(
-  path: '/game/bot/:id',
+  path: '/game/:sessionId',
   factory: $GameScreenRoute._fromState,
 );
 
 mixin $GameScreenRoute on GoRouteData {
   static GameScreenRoute _fromState(GoRouterState state) =>
-      GameScreenRoute(id: int.parse(state.pathParameters['id']!));
+      GameScreenRoute(sessionId: state.pathParameters['sessionId']!);
 
   GameScreenRoute get _self => this as GameScreenRoute;
 
   @override
-  String get location => GoRouteData.$location(
-    '/game/bot/${Uri.encodeComponent(_self.id.toString())}',
-  );
+  String get location =>
+      GoRouteData.$location('/game/${Uri.encodeComponent(_self.sessionId)}');
 
   @override
   void go(BuildContext context) => context.go(location);

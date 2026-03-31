@@ -1,3 +1,5 @@
+import 'package:chess/core/models/game_session/game_session.dart';
+import 'package:dartchess/dartchess.dart';
 import 'package:streamline/streamline.dart';
 import 'package:dart_mappable/dart_mappable.dart';
 
@@ -6,15 +8,15 @@ part 'make_move_command.mapper.dart';
 @MappableClass()
 class MakeMoveCommand 
   with MakeMoveCommandMappable
-  implements ICommand<String> {
+  implements ICommand<void> {
     
     const MakeMoveCommand(
     {
       required this.sessionId,
-      required this.fen
+      required this.move
     });
     
-    final String sessionId;
-    final String fen;
+  final SessionId sessionId;
+  final Move move;
 }
 
