@@ -15,6 +15,7 @@ class MakeMoveCommandMapper extends ClassMapperBase<MakeMoveCommand> {
   static MakeMoveCommandMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = MakeMoveCommandMapper._());
+      _t$_R0Mapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -22,24 +23,24 @@ class MakeMoveCommandMapper extends ClassMapperBase<MakeMoveCommand> {
   @override
   final String id = 'MakeMoveCommand';
 
-  static String _$sessionId(MakeMoveCommand v) => v.sessionId;
-  static const Field<MakeMoveCommand, String> _f$sessionId = Field(
+  static SessionId _$sessionId(MakeMoveCommand v) => v.sessionId;
+  static const Field<MakeMoveCommand, SessionId> _f$sessionId = Field(
     'sessionId',
     _$sessionId,
   );
-  static String _$fen(MakeMoveCommand v) => v.fen;
-  static const Field<MakeMoveCommand, String> _f$fen = Field('fen', _$fen);
+  static Move _$move(MakeMoveCommand v) => v.move;
+  static const Field<MakeMoveCommand, Move> _f$move = Field('move', _$move);
 
   @override
   final MappableFields<MakeMoveCommand> fields = const {
     #sessionId: _f$sessionId,
-    #fen: _f$fen,
+    #move: _f$move,
   };
 
   static MakeMoveCommand _instantiate(DecodingData data) {
     return MakeMoveCommand(
       sessionId: data.dec(_f$sessionId),
-      fen: data.dec(_f$fen),
+      move: data.dec(_f$move),
     );
   }
 
@@ -105,7 +106,7 @@ extension MakeMoveCommandValueCopy<$R, $Out>
 
 abstract class MakeMoveCommandCopyWith<$R, $In extends MakeMoveCommand, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  $R call({String? sessionId, String? fen});
+  $R call({SessionId? sessionId, Move? move});
   MakeMoveCommandCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
   );
@@ -120,21 +121,66 @@ class _MakeMoveCommandCopyWithImpl<$R, $Out>
   late final ClassMapperBase<MakeMoveCommand> $mapper =
       MakeMoveCommandMapper.ensureInitialized();
   @override
-  $R call({String? sessionId, String? fen}) => $apply(
+  $R call({SessionId? sessionId, Move? move}) => $apply(
     FieldCopyWithData({
       if (sessionId != null) #sessionId: sessionId,
-      if (fen != null) #fen: fen,
+      if (move != null) #move: move,
     }),
   );
   @override
   MakeMoveCommand $make(CopyWithData data) => MakeMoveCommand(
     sessionId: data.get(#sessionId, or: $value.sessionId),
-    fen: data.get(#fen, or: $value.fen),
+    move: data.get(#move, or: $value.move),
   );
 
   @override
   MakeMoveCommandCopyWith<$R2, MakeMoveCommand, $Out2> $chain<$R2, $Out2>(
     Then<$Out2, $R2> t,
   ) => _MakeMoveCommandCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+typedef _t$_R0<A> = ({A value});
+
+class _t$_R0Mapper extends RecordMapperBase<_t$_R0> {
+  static _t$_R0Mapper? _instance;
+  _t$_R0Mapper._();
+
+  static _t$_R0Mapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = _t$_R0Mapper._());
+      MapperBase.addType(<A>(f) => f<({A value})>());
+    }
+    return _instance!;
+  }
+
+  static dynamic _$value(_t$_R0 v) => v.value;
+  static dynamic _arg$value<A>(f) => f<A>();
+  static const Field<_t$_R0, dynamic> _f$value = Field(
+    'value',
+    _$value,
+    arg: _arg$value,
+  );
+
+  @override
+  final MappableFields<_t$_R0> fields = const {#value: _f$value};
+
+  @override
+  Function get typeFactory =>
+      <A>(f) => f<_t$_R0<A>>();
+
+  static _t$_R0<A> _instantiate<A>(DecodingData<_t$_R0> data) {
+    return (value: data.dec(_f$value));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static _t$_R0<A> fromMap<A>(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<_t$_R0<A>>(map);
+  }
+
+  static _t$_R0<A> fromJson<A>(String json) {
+    return ensureInitialized().decodeJson<_t$_R0<A>>(json);
+  }
 }
 

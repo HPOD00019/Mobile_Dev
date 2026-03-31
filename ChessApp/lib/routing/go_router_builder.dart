@@ -1,6 +1,6 @@
-import 'package:chess/core/models/game_session.dart';
 import 'package:chess/ui/screens/bot_select_screen.dart';
 import 'package:chess/ui/screens/game_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
@@ -15,14 +15,13 @@ class BotSelectScreenRoute extends GoRouteData with $BotSelectScreenRoute{
   }
 }
 
-@TypedGoRoute<GameScreenRoute>(path: '/game/bot/:id')
+@TypedGoRoute<GameScreenRoute>(path: '/game/:sessionId')
 @immutable
 class GameScreenRoute extends GoRouteData with $GameScreenRoute {
-  final int id;
-  const GameScreenRoute({required this.id});
+  final String sessionId;
+  const GameScreenRoute({required this.sessionId});
 
   @override
-  Widget build(BuildContext context, GoRouterState state) {
-    return GameWithBotScreen(bot: BotDifficulty(level: id));
-  }
+  Widget build(BuildContext context, GoRouterState state) =>
+      GameScreen(sessionId: (value: sessionId));
 }
