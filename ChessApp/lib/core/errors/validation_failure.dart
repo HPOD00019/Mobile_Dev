@@ -14,7 +14,7 @@ final class ValidationErrors {
   Iterator<MapEntry<String, HashSet<String>>> get iterator => _errors.entries.iterator;
 }
 
-final class ValidationFailure extends Failure{
+final class ValidationFailure extends AppFailure {
   const ValidationFailure({required this.errors});
   final ValidationErrors errors;
 }

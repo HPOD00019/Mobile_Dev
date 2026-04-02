@@ -1,5 +1,10 @@
 import 'package:chess/core/utilities/result.dart';
+import 'package:chess/core/errors/failure.dart';
 
 abstract class UseCase<T, Params>{
-  Future<Result<T, Failure>> call(Params params);
+  const UseCase();
+  Future<Result<T, AppFailure>> call(Params params);
 }
+
+
+
