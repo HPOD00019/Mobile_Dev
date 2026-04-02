@@ -9,3 +9,5 @@ targets:
         enabled: true
       go_router_builder:
         enabled: true
+      freezed:
+        enabled: true

@@ -8,10 +8,8 @@ final class ChessApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: appRouter,
-      builder: (context, child) => Scaffold(
-        appBar: AppBar(title: const Text("Chess")),
-        body: child ?? const SizedBox.shrink(),
-      ),
+      builder: (context, child) =>
+          Scaffold(body: child ?? const SizedBox.shrink()),
     );
   }
 }
