@@ -41,6 +41,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.13.0"
+  bloc:
+    dependency: "direct main"
+    description:
+      name: bloc
+      sha256: a48653a82055a900b88cd35f92429f068c5a8057ae9b136d197b3d56c57efb81
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.2.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -233,6 +241,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+  equatable:
+    dependency: "direct main"
+    description:
+      name: equatable
+      sha256: "3e0141505477fd8ad55d6eb4e7776d3fe8430be8e497ccb1521370c3f21a3e2b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.8"
   fake_async:
     dependency: transitive
     description:
@@ -270,6 +286,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_bloc:
+    dependency: "direct main"
+    description:
+      name: flutter_bloc
+      sha256: cf51747952201a455a1c840f8171d273be009b932c75093020f9af64f2123e38
+      url: "https://pub.dev"
+    source: hosted
+    version: "9.1.1"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -560,14 +584,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.1.0"
-  rxdart:
-    dependency: transitive
-    description:
-      name: rxdart
-      sha256: "5c3004a4a8dbb94bd4bf5412a4def4acdaa12e12f269737a5751369e12d1a962"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.28.0"
   shelf:
     dependency: transitive
     description:
@@ -669,14 +685,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  streamline:
-    dependency: "direct main"
-    description:
-      name: streamline
-      sha256: c4b7f3de45962ba3d4a32f5ecedfaa3cdafd5e3b1ca649e497b0950122d1cd8f
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.5.1"
   string_scanner:
     dependency: transitive
     description:
