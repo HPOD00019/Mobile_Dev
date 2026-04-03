@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders:
+      dart_mappable_builder:
+        enabled: true
+      injectable_generator:
+        enabled: true
+      streamline_generator:
+        enabled: true
+      go_router_builder:
+        enabled: true
+      freezed:
+        enabled: true
