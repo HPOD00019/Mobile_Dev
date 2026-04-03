@@ -28,6 +28,7 @@ final class SessionOpponent {
   final OpponentId id;
 }
 
+
 final class GameSession {
   const GameSession._({required this.id, required this.history, required this.black, required this.white});
  

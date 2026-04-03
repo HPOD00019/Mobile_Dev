@@ -28,3 +28,8 @@ final class MatchState {
   @override
   String toString() => "[FEN]: ${position.fen}";
 }
+
+extension MatchStateExtensions on MatchState {
+  Opponent getTurnTaker(Side turn) =>
+      turn == Side.white ? white : black;
+}

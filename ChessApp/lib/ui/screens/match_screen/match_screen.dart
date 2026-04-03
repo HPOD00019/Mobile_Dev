@@ -5,6 +5,7 @@ import 'package:chess/features/chess/presentation/bloc/chess_match_bloc/chess_ma
 import 'package:chess/features/chess/presentation/bloc/chess_match_bloc/events.dart';
 import 'package:chess/features/chess/presentation/bloc/chess_match_bloc/states.dart';
 import 'package:chess/features/chess/presentation/chess_board.dart';
+import 'package:chess/ui/screens/match_screen/match_result_screen.dart';
 import 'package:dartchess/dartchess.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -21,8 +22,9 @@ final class MatchScreen extends StatelessWidget {
       builder: (context, state) => switch (state) {
         EmptyState _ => _loadMatch(context),
         MatchStateActive active => _MatchSceen(state: active.state),
+        MatchOverState matchOver => AnimatedMatchOverScreen(result: matchOver.result),
         InternalError error => ErrorWidget(error.error),
-        _ => ErrorWidget("Unknown error")
+        _ => ErrorWidget("Unknown error"),
       },
     );
   }
@@ -45,7 +47,22 @@ final class _MatchSceen extends StatelessWidget {
 
     debugPrint(state.toString());
 
-    return Scaffold(
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<ChessMatchBloc, ChessMatchBlocState>(
+          listenWhen: (previous, current) {
+            if (previous is! MatchStateActive || current is! MatchStateActive) {
+              return false;
+            }
+            return previous.state.position.turn != current.state.position.turn;
+          },
+          listener: (context, _) {
+            context.read<ChessMatchBloc>().add(const TurnChanged());
+          },
+        ),
+      ],
+
+      child: Scaffold(
       appBar: AppBar(
         title: Text(_getGameLabel()),
         centerTitle: true,
@@ -117,6 +134,7 @@ final class _MatchSceen extends StatelessWidget {
             const SizedBox(height: 20),
           ],
         ),
+      ),
       ),
     );
   }

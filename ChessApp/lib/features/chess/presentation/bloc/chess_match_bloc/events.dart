@@ -12,3 +12,7 @@ final class LoadMatchRequested implements ChessMatchBlocEvent {
   LoadMatchRequested({required this.sessionId});
   final SessionId sessionId;
 }
+
+final class TurnChanged implements ChessMatchBlocEvent {
+  const TurnChanged();
+}

@@ -23,17 +23,25 @@ final class BotSelected extends BotSelectBlocEvent {
 }
 
 final class MatchRequested extends BotSelectBlocEvent {
-  const MatchRequested({required this.bot, this.forceStart = false});
+  const MatchRequested({required this.bot});
 
   final BotOpponent bot;
-  final bool forceStart;
 
   @override
   List<Object?> get props => [bot];
 }
 
-final class ContinueMatchRequested extends BotSelectBlocEvent {
-  const ContinueMatchRequested({required this.session});
+final class ConcedeAndStartNew extends BotSelectBlocEvent {
+  const ConcedeAndStartNew({required this.bot});
+
+  final BotOpponent bot;
+
+  @override
+  List<Object?> get props => [bot];
+}
+
+final class ReconnectToMatch extends BotSelectBlocEvent {
+  const ReconnectToMatch({required this.session});
 
   final GameSession session;
 

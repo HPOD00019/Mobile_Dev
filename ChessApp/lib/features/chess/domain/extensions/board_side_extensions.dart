@@ -8,4 +8,11 @@ extension BoardSideExtensions on PlayerSide{
     PlayerSide.white => Side.white,
     PlayerSide.black => Side.black,
   };
+  
+  bool isPlayerTurn(Side turn) => switch (this) {
+    PlayerSide.none => false,
+    PlayerSide.both => true,
+    PlayerSide.white => turn == Side.white,
+    PlayerSide.black => turn == Side.black,
+  };
 }

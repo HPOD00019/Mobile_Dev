@@ -28,6 +28,22 @@ final class BotsLoaded extends BotSelectBlocState {
   final BotOpponent selectedBot;
   final PendingMatchAction? pendingSession;
 
+  BotsLoaded withExistingSession({
+    required GameSession session,
+    required BotOpponent bot,
+  }) => _with(
+    pendingSession: PendingMatchAction(existingSession: session, bot: bot),
+  );
+
+  BotsLoaded _with({
+    BotOpponent? selectedBot,
+    required PendingMatchAction? pendingSession,
+  }) => BotsLoaded(
+    bots: bots,
+    selectedBot: selectedBot ?? this.selectedBot,
+    pendingSession: pendingSession,
+  );
+
   @override
   List<Object?> get props => [bots, selectedBot, pendingSession];
 }

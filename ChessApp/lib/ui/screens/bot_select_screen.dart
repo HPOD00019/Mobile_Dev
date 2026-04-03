@@ -28,13 +28,13 @@ final class BotSelectScreen extends StatelessWidget {
                 firstOptionLabel: 'New Game',
                 onFirstOption: () {
                   context.read<BotSelectBloc>().add(
-                    MatchRequested(bot: pending.bot, forceStart: true),
+                    ConcedeAndStartNew(bot: pending.bot),
                   );
                 },
                 secondOptionLabel: 'Continue',
                 onSecondOption: () {
                   context.read<BotSelectBloc>().add(
-                    ContinueMatchRequested(session: pending.existingSession),
+                    ReconnectToMatch(session: pending.existingSession),
                   );
                 },
               );

@@ -60,6 +60,6 @@ final class _ChessBoard extends StatelessWidget {
   }
   
   void _onPromotion(BuildContext context, Role? piece) {
-    context.read<ChessMatchBloc>().add(MoveRequested(move: state.moveToPromote!));
+    context.read<ChessMatchBloc>().add(MoveRequested(move: state.moveToPromote!.withPromotion(piece)));
   }
 }
