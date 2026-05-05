@@ -5,7 +5,7 @@ import 'package:chess/features/chess/domain/repository/i_session_repository.dart
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-final class CreateMatchUseCase {
+class CreateMatchUseCase {
   const CreateMatchUseCase({
     required this.sessionsRepository,
   });

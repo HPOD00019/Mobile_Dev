@@ -3,25 +3,24 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i9;
+import 'dart:async' as _i8;
 
 import 'package:chess/features/chess/domain/repository/i_bot_repository.dart'
     as _i2;
 import 'package:chess/features/chess/domain/usecases/create_match_usecase.dart'
-    as _i8;
-import 'package:chess/features/chess/domain/usecases/get_session_usecase.dart'
-    as _i3;
-import 'package:chess/features/chess/domain/usecases/try_find_existing_match_usecase.dart'
-    as _i6;
-import 'package:chess/features/chess/presentation/bloc/bot_select_bloc/bot_select_bloc.dart'
-    as _i5;
-import 'package:chess/features/chess/presentation/bloc/bot_select_bloc/events.dart'
-    as _i10;
-import 'package:chess/features/chess/presentation/bloc/bot_select_bloc/states.dart'
     as _i4;
-import 'package:flutter_bloc/flutter_bloc.dart' as _i11;
+import 'package:chess/features/chess/domain/usecases/get_session_usecase.dart'
+    as _i5;
+import 'package:chess/features/chess/domain/usecases/try_find_existing_match_usecase.dart'
+    as _i3;
+import 'package:chess/features/chess/presentation/bloc/bot_select_bloc/bot_select_bloc.dart'
+    as _i7;
+import 'package:chess/features/chess/presentation/bloc/bot_select_bloc/events.dart'
+    as _i9;
+import 'package:chess/features/chess/presentation/bloc/bot_select_bloc/states.dart'
+    as _i6;
+import 'package:flutter_bloc/flutter_bloc.dart' as _i10;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:mockito/src/dummies.dart' as _i7;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -44,22 +43,34 @@ class _FakeIBotRepository_0 extends _i1.SmartFake
     : super(parent, parentInvocation);
 }
 
-class _FakeGetAppUserUsecase_1 extends _i1.SmartFake
-    implements _i3.GetAppUserUsecase {
-  _FakeGetAppUserUsecase_1(Object parent, Invocation parentInvocation)
+class _FakeTryFindExistingMatchUseCase_1 extends _i1.SmartFake
+    implements _i3.TryFindExistingMatchUseCase {
+  _FakeTryFindExistingMatchUseCase_1(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
-class _FakeBotSelectBlocState_2 extends _i1.SmartFake
-    implements _i4.BotSelectBlocState {
-  _FakeBotSelectBlocState_2(Object parent, Invocation parentInvocation)
+class _FakeCreateMatchUseCase_2 extends _i1.SmartFake
+    implements _i4.CreateMatchUseCase {
+  _FakeCreateMatchUseCase_2(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeGetAppUserUsecase_3 extends _i1.SmartFake
+    implements _i5.GetAppUserUsecase {
+  _FakeGetAppUserUsecase_3(Object parent, Invocation parentInvocation)
+    : super(parent, parentInvocation);
+}
+
+class _FakeBotSelectBlocState_4 extends _i1.SmartFake
+    implements _i6.BotSelectBlocState {
+  _FakeBotSelectBlocState_4(Object parent, Invocation parentInvocation)
     : super(parent, parentInvocation);
 }
 
 /// A class which mocks [BotSelectBloc].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockBotSelectBloc extends _i1.Mock implements _i5.BotSelectBloc {
+class MockBotSelectBloc extends _i1.Mock implements _i7.BotSelectBloc {
   @override
   _i2.IBotRepository get botsRepository =>
       (super.noSuchMethod(
@@ -76,75 +87,74 @@ class MockBotSelectBloc extends _i1.Mock implements _i5.BotSelectBloc {
           as _i2.IBotRepository);
 
   @override
-  _i6.TryFindExistingMatchUseCase get tryFindExistingMatchUseCase =>
+  _i3.TryFindExistingMatchUseCase get tryFindExistingMatchUseCase =>
       (super.noSuchMethod(
             Invocation.getter(#tryFindExistingMatchUseCase),
-            returnValue: _i7.dummyValue<_i6.TryFindExistingMatchUseCase>(
+            returnValue: _FakeTryFindExistingMatchUseCase_1(
               this,
               Invocation.getter(#tryFindExistingMatchUseCase),
             ),
-            returnValueForMissingStub: _i7
-                .dummyValue<_i6.TryFindExistingMatchUseCase>(
-                  this,
-                  Invocation.getter(#tryFindExistingMatchUseCase),
-                ),
+            returnValueForMissingStub: _FakeTryFindExistingMatchUseCase_1(
+              this,
+              Invocation.getter(#tryFindExistingMatchUseCase),
+            ),
           )
-          as _i6.TryFindExistingMatchUseCase);
+          as _i3.TryFindExistingMatchUseCase);
 
   @override
-  _i8.CreateMatchUseCase get createMatchUseCase =>
+  _i4.CreateMatchUseCase get createMatchUseCase =>
       (super.noSuchMethod(
             Invocation.getter(#createMatchUseCase),
-            returnValue: _i7.dummyValue<_i8.CreateMatchUseCase>(
+            returnValue: _FakeCreateMatchUseCase_2(
               this,
               Invocation.getter(#createMatchUseCase),
             ),
-            returnValueForMissingStub: _i7.dummyValue<_i8.CreateMatchUseCase>(
+            returnValueForMissingStub: _FakeCreateMatchUseCase_2(
               this,
               Invocation.getter(#createMatchUseCase),
             ),
           )
-          as _i8.CreateMatchUseCase);
+          as _i4.CreateMatchUseCase);
 
   @override
-  _i3.GetAppUserUsecase get getAppUserUsecase =>
+  _i5.GetAppUserUsecase get getAppUserUsecase =>
       (super.noSuchMethod(
             Invocation.getter(#getAppUserUsecase),
-            returnValue: _FakeGetAppUserUsecase_1(
+            returnValue: _FakeGetAppUserUsecase_3(
               this,
               Invocation.getter(#getAppUserUsecase),
             ),
-            returnValueForMissingStub: _FakeGetAppUserUsecase_1(
+            returnValueForMissingStub: _FakeGetAppUserUsecase_3(
               this,
               Invocation.getter(#getAppUserUsecase),
             ),
           )
-          as _i3.GetAppUserUsecase);
+          as _i5.GetAppUserUsecase);
 
   @override
-  _i4.BotSelectBlocState get state =>
+  _i6.BotSelectBlocState get state =>
       (super.noSuchMethod(
             Invocation.getter(#state),
-            returnValue: _FakeBotSelectBlocState_2(
+            returnValue: _FakeBotSelectBlocState_4(
               this,
               Invocation.getter(#state),
             ),
-            returnValueForMissingStub: _FakeBotSelectBlocState_2(
+            returnValueForMissingStub: _FakeBotSelectBlocState_4(
               this,
               Invocation.getter(#state),
             ),
           )
-          as _i4.BotSelectBlocState);
+          as _i6.BotSelectBlocState);
 
   @override
-  _i9.Stream<_i4.BotSelectBlocState> get stream =>
+  _i8.Stream<_i6.BotSelectBlocState> get stream =>
       (super.noSuchMethod(
             Invocation.getter(#stream),
-            returnValue: _i9.Stream<_i4.BotSelectBlocState>.empty(),
+            returnValue: _i8.Stream<_i6.BotSelectBlocState>.empty(),
             returnValueForMissingStub:
-                _i9.Stream<_i4.BotSelectBlocState>.empty(),
+                _i8.Stream<_i6.BotSelectBlocState>.empty(),
           )
-          as _i9.Stream<_i4.BotSelectBlocState>);
+          as _i8.Stream<_i6.BotSelectBlocState>);
 
   @override
   bool get isClosed =>
@@ -156,27 +166,27 @@ class MockBotSelectBloc extends _i1.Mock implements _i5.BotSelectBloc {
           as bool);
 
   @override
-  void add(_i10.BotSelectBlocEvent? event) => super.noSuchMethod(
+  void add(_i9.BotSelectBlocEvent? event) => super.noSuchMethod(
     Invocation.method(#add, [event]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void onEvent(_i10.BotSelectBlocEvent? event) => super.noSuchMethod(
+  void onEvent(_i9.BotSelectBlocEvent? event) => super.noSuchMethod(
     Invocation.method(#onEvent, [event]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void emit(_i4.BotSelectBlocState? state) => super.noSuchMethod(
+  void emit(_i6.BotSelectBlocState? state) => super.noSuchMethod(
     Invocation.method(#emit, [state]),
     returnValueForMissingStub: null,
   );
 
   @override
-  void on<E extends _i10.BotSelectBlocEvent>(
-    _i11.EventHandler<E, _i4.BotSelectBlocState>? handler, {
-    _i11.EventTransformer<E>? transformer,
+  void on<E extends _i9.BotSelectBlocEvent>(
+    _i10.EventHandler<E, _i6.BotSelectBlocState>? handler, {
+    _i10.EventTransformer<E>? transformer,
   }) => super.noSuchMethod(
     Invocation.method(#on, [handler], {#transformer: transformer}),
     returnValueForMissingStub: null,
@@ -184,8 +194,7 @@ class MockBotSelectBloc extends _i1.Mock implements _i5.BotSelectBloc {
 
   @override
   void onTransition(
-    _i11.Transition<_i10.BotSelectBlocEvent, _i4.BotSelectBlocState>?
-    transition,
+    _i10.Transition<_i9.BotSelectBlocEvent, _i6.BotSelectBlocState>? transition,
   ) => super.noSuchMethod(
     Invocation.method(#onTransition, [transition]),
     returnValueForMissingStub: null,
@@ -193,7 +202,7 @@ class MockBotSelectBloc extends _i1.Mock implements _i5.BotSelectBloc {
 
   @override
   void onDone(
-    _i10.BotSelectBlocEvent? event, [
+    _i9.BotSelectBlocEvent? event, [
     Object? error,
     StackTrace? stackTrace,
   ]) => super.noSuchMethod(
@@ -202,16 +211,16 @@ class MockBotSelectBloc extends _i1.Mock implements _i5.BotSelectBloc {
   );
 
   @override
-  _i9.Future<void> close() =>
+  _i8.Future<void> close() =>
       (super.noSuchMethod(
             Invocation.method(#close, []),
-            returnValue: _i9.Future<void>.value(),
-            returnValueForMissingStub: _i9.Future<void>.value(),
+            returnValue: _i8.Future<void>.value(),
+            returnValueForMissingStub: _i8.Future<void>.value(),
           )
-          as _i9.Future<void>);
+          as _i8.Future<void>);
 
   @override
-  void onChange(_i11.Change<_i4.BotSelectBlocState>? change) =>
+  void onChange(_i10.Change<_i6.BotSelectBlocState>? change) =>
       super.noSuchMethod(
         Invocation.method(#onChange, [change]),
         returnValueForMissingStub: null,

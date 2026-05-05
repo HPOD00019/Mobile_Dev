@@ -7,7 +7,7 @@ import 'package:chess/features/chess/domain/usecases/get_session_usecase.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-final class TryFindExistingMatchUseCase {
+class TryFindExistingMatchUseCase {
   const TryFindExistingMatchUseCase({
     required this.sessionsRepository,
     required this.getAppUserUsecase,
