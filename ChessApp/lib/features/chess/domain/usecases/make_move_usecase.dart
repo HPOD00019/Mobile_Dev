@@ -11,7 +11,7 @@ final class MoveParams {
 }
 
 @lazySingleton
-final class MakeMoveUsecase extends UseCase<Position, MoveParams> {
+class MakeMoveUsecase extends UseCase<Position, MoveParams> {
   @override
   Future<Result<Position, ChessMoveFailure>> call(MoveParams params) async {
     try{

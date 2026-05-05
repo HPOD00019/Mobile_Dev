@@ -8,7 +8,7 @@ import 'package:dartchess/dartchess.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-final class MatchResultEvaluateUseCase extends UseCase<MatchResult, MatchState> {
+class MatchResultEvaluateUseCase extends UseCase<MatchResult, MatchState> {
   @override
   Future<Result<MatchResult, MatchResultEvaluateFailure>> call(
     MatchState params,
