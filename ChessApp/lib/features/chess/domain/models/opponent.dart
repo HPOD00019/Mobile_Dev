@@ -8,6 +8,7 @@ final class OpponentId extends Equatable{
   final String uuid;
   
   static OpponentId createNew() => OpponentId._(uuid: Uuid().v1());
+  static OpponentId restore({required String uuid}) => OpponentId._(uuid: uuid);
   
   @override
   List<Object?> get props => [uuid];

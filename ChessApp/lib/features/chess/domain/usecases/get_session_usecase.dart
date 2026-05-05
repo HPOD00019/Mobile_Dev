@@ -11,7 +11,7 @@ final class NoParams {}
 final class GetAppUserFailure extends AppFailure{}
 
 @lazySingleton
-final class GetAppUserUsecase extends UseCase<HumanOpponent, NoParams> {
+class GetAppUserUsecase extends UseCase<HumanOpponent, NoParams> {
   
   // TODO: Replace mock with actual authentificated user. (from UserRepository)
   final HumanOpponent _appUser = HumanOpponent(

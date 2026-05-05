@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-final class BotSelectBloc extends Bloc<BotSelectBlocEvent, BotSelectBlocState> {
+class BotSelectBloc extends Bloc<BotSelectBlocEvent, BotSelectBlocState> {
   BotSelectBloc({
     required this.botsRepository,
     required this.tryFindExistingMatchUseCase,

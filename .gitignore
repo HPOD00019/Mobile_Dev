@@ -49,3 +49,8 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Reports and Sprints
+ChessApp/docs/reports/
+ChessApp/docs/sprints/
+

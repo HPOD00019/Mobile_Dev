@@ -28,7 +28,7 @@ final class ChessMatchBloc extends Bloc<ChessMatchBlocEvent, ChessMatchBlocState
     required this.getOpponentTurnUsecase,
     required this.matchResultEvaluateUseCase,
   }) : super(EmptyState()) {
-    on<MoveRequested>(_onMoveRequstedHandle);
+    on<MoveRequested>(_onMoveRequestedHandle);
     on<LoadMatchRequested>(_onLoadMatchHandle);
     on<TurnChanged>(_onTurnChanged);
   }
@@ -40,7 +40,7 @@ final class ChessMatchBloc extends Bloc<ChessMatchBlocEvent, ChessMatchBlocState
   final GetOpponentTurnUsecase getOpponentTurnUsecase;
   final MatchResultEvaluateUseCase matchResultEvaluateUseCase;
   
-  Future _onMoveRequstedHandle(MoveRequested event, Emitter<ChessMatchBlocState> emit) async {
+  Future _onMoveRequestedHandle(MoveRequested event, Emitter<ChessMatchBlocState> emit) async {
     if(state is! MatchStateActive) return;
 
     final current = (state as MatchStateActive).state;
@@ -132,12 +132,13 @@ final class ChessMatchBloc extends Bloc<ChessMatchBlocEvent, ChessMatchBlocState
             MoveParams(move: move, position: current.position),
           ).mapErrorAsync((e) => InternalError(error: "Fail on opponent move!"));
         })
-        // persist updated position and emit new board state to view
-        .mapAsync((newPosition) async {
+        // emit new board state to view
+        .onSuccessAsync((newPosition) async {
           final updatedState = current.withPosition(position: newPosition);
-
-          emit(MatchStateActive(state: updatedState));
-
+          emit(MatchStateActive(state: updatedState));          
+        })
+        // persist updated position in repository
+        .onSuccessAsync((newPosition) async {
           final session = await sessions.getById(current.relatedSessionId);
           final fen = Fen(value: newPosition.fen);
           final updatedSession = session.addInHistory(fen: fen);

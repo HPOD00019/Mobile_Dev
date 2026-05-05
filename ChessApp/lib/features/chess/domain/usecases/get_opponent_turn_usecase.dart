@@ -7,7 +7,7 @@ import 'package:dartchess/dartchess.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
-final class GetOpponentTurnUsecase {
+class GetOpponentTurnUsecase {
   const GetOpponentTurnUsecase({
     required this.getBotTurnUsecase,
     required this.getPlayerTurnUsecase,
