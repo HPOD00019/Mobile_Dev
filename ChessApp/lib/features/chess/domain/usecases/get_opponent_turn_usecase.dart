@@ -8,7 +8,7 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 class GetOpponentTurnUsecase {
-  const GetOpponentTurnUsecase({
+  GetOpponentTurnUsecase({
     required this.getBotTurnUsecase,
     required this.getPlayerTurnUsecase,
   });
