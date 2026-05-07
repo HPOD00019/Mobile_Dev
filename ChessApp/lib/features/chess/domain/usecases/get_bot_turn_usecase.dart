@@ -1,15 +1,38 @@
+import 'package:chess/core/errors/exceptions.dart';
 import 'package:chess/core/errors/failure.dart';
 import 'package:chess/core/utilities/result.dart';
 import 'package:chess/features/chess/domain/extensions/move_extensions.dart';
+import 'package:chess/features/chess/data/datasources/remote/chess_remote_datasource.dart';
 import 'package:dartchess/dartchess.dart';
 import 'package:injectable/injectable.dart';
+import 'package:get_it/get_it.dart';
 
 @lazySingleton
 final class GetBotTurnUsecase {
+  final ChessRemoteDataSource _dataSource;
+
+  GetBotTurnUsecase({required ChessRemoteDataSource dataSource}) 
+    : _dataSource = dataSource;
+
   Future<Result<Move, GetBotTurnFailure>> call(Position position) async {
     try {
       
-      // Imulate bot thinking delay
+      final result = await _dataSource.getMove(position.fen);
+
+      final String bestMove;
+
+      switch (result) {
+        case Success(value: final move):
+          bestMove = move;
+        case Failure(error: final failure):
+          print(failure);
+          return Result.failure(
+            GetBotTurnFailure(message: failure.message),
+          );
+      }
+
+ 
+      // Simulate bot thinking delay
       await Future.delayed(Duration(milliseconds: 500));
       
       final legalMaps = position.legalMoves;
@@ -39,7 +62,7 @@ final class GetBotTurnUsecase {
           .elementAt(random % toSquares.size.toInt());
 
       // Construct the move
-      Move move = NormalMove(from: randomEntry.key, to: randomTo);
+      Move move = NormalMove.fromUci(bestMove);
 
       // Handle promotion - always pick queen
       if (move.isPromotionPawnMove(position) && move is NormalMove) {
