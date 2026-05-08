@@ -1,3 +1,0 @@
-Because chess depends on go_router_builder 4.2.0 which requires the Flutter SDK, version solving failed.
-
-Flutter users should use `flutter pub` instead of `dart pub`.

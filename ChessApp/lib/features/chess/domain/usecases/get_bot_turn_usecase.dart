@@ -1,15 +1,37 @@
 import 'package:chess/core/errors/failure.dart';
 import 'package:chess/core/utilities/result.dart';
 import 'package:chess/features/chess/domain/extensions/move_extensions.dart';
+import 'package:chess/http/configure_dio.dart';
+import 'package:chess/http/response/chess_engine_response.dart';
 import 'package:dartchess/dartchess.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 @lazySingleton
 final class GetBotTurnUsecase {
   Future<Result<Move, GetBotTurnFailure>> call(Position position) async {
+    
     try {
-      
-      // Imulate bot thinking delay
+      var response = await http.post(
+        "https://chess-api.com/v1",
+        data: {'fen': position.fen},
+        options: Options(receiveTimeout: Duration(seconds: 5)),
+      );
+      var engineResponse = ChessEngineResponseMapper.fromMap(response.data);
+
+      Move? move = Move.parse(engineResponse.uci);
+
+      if (move == null) throw Exception("Was unable to parse UCI move returned by api...");
+
+      return Result.success(move);
+    } catch (e) {
+      debugPrint("Failed to get bot move from api. Fallback to internal bot implementation.");
+    }
+
+    // Fallback bot logic in case api not working
+    try {
+      // Emulate bot thinking delay
       await Future.delayed(Duration(milliseconds: 500));
       
       final legalMaps = position.legalMoves;
@@ -37,8 +59,7 @@ final class GetBotTurnUsecase {
       final randomTo = toSquares.squares
           .toList()
           .elementAt(random % toSquares.size.toInt());
-
-      // Construct the move
+      
       Move move = NormalMove(from: randomEntry.key, to: randomTo);
 
       // Handle promotion - always pick queen

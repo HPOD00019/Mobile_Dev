@@ -30,6 +30,7 @@ dependencies:
   
   # HTTP Client
   dio: ^5.9.2
+  dio_smart_retry: ^7.0.1
   
   # Board UI 
   chessground: ^9.0.0
