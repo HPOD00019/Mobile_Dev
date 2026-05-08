@@ -65,8 +65,20 @@ void main() {
 
   group('BotOptionsRequested', () {
     final bots = {
-      BotOpponent(id: OpponentId.restore(uuid: 'bot1'), displayName: 'Easy Bot', difficulty: 1),
-      BotOpponent(id: OpponentId.restore(uuid: 'bot2'), displayName: 'Hard Bot', difficulty: 9),
+      BotOpponent(
+        id: OpponentId.restore(uuid: 'bot1'),
+        displayName: 'Easy Bot',
+        difficulty: 1,
+        thinkingTime: 1,
+        depth: 1,
+      ),
+      BotOpponent(
+        id: OpponentId.restore(uuid: 'bot2'),
+        displayName: 'Hard Bot',
+        difficulty: 9,
+        thinkingTime: 1,
+        depth: 1,
+      ),
     };
 
     blocTest<BotSelectBloc, BotSelectBlocState>(
@@ -97,8 +109,20 @@ void main() {
   });
 
   group('BotSelected', () {
-    final bot1 = BotOpponent(id: OpponentId.restore(uuid: 'bot1'), displayName: 'Bot1', difficulty: 1);
-    final bot2 = BotOpponent(id: OpponentId.restore(uuid: 'bot2'), displayName: 'Bot2', difficulty: 5);
+    final bot1 = BotOpponent(
+      id: OpponentId.restore(uuid: 'bot1'),
+      displayName: 'Bot1',
+      difficulty: 1,
+      thinkingTime: 1,
+      depth: 1,
+    );
+    final bot2 = BotOpponent(
+      id: OpponentId.restore(uuid: 'bot2'),
+      displayName: 'Bot2',
+      difficulty: 5,
+      thinkingTime: 1,
+      depth: 1,
+    );
 
     blocTest<BotSelectBloc, BotSelectBlocState>(
       'should emit BotsLoaded with new selected bot',
@@ -112,7 +136,13 @@ void main() {
   });
 
   group('MatchRequested', () {
-    final bot = BotOpponent(id: OpponentId.restore(uuid: 'bot1'), displayName: 'TestBot', difficulty: 3);
+    final bot = BotOpponent(
+      id: OpponentId.restore(uuid: 'bot1'),
+      displayName: 'TestBot',
+      difficulty: 3,
+      thinkingTime: 1,
+      depth: 1,
+    );
     final appUser = HumanOpponent(
       id: OpponentId.restore(uuid: 'user1'),
       displayName: 'Player',
