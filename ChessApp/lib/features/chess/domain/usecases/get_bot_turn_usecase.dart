@@ -1,6 +1,7 @@
 import 'package:chess/core/errors/failure.dart';
 import 'package:chess/core/utilities/result.dart';
 import 'package:chess/features/chess/domain/extensions/move_extensions.dart';
+import 'package:chess/features/chess/domain/models/opponent.dart';
 import 'package:chess/http/configure_dio.dart';
 import 'package:chess/http/response/chess_engine_response.dart';
 import 'package:dartchess/dartchess.dart';
@@ -10,13 +11,13 @@ import 'package:injectable/injectable.dart';
 
 @lazySingleton
 final class GetBotTurnUsecase {
-  Future<Result<Move, GetBotTurnFailure>> call(Position position) async {
+  Future<Result<Move, GetBotTurnFailure>> call(BotOpponent bot, Position position) async {
     
     try {
       var response = await http.post(
         "https://chess-api.com/v1",
-        data: {'fen': position.fen},
-        options: Options(receiveTimeout: Duration(seconds: 5)),
+        data: {'fen': position.fen, 'depth': bot.depth, 'maxThinkingTime': bot.thinkingTime},
+        options: Options(connectTimeout: Duration(seconds: 3)),
       );
       var engineResponse = ChessEngineResponseMapper.fromMap(response.data);
 

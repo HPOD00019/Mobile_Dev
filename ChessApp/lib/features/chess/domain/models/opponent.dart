@@ -32,9 +32,12 @@ final class HumanOpponent extends Opponent{
 
 
 final class BotOpponent extends Opponent{
-  const BotOpponent({required super.id,  required super.displayName, required this.difficulty}); 
+  const BotOpponent({required super.id, required super.displayName, required this.difficulty, required this.thinkingTime, required this.depth}); 
   
   final int difficulty; 
+  
+  final int thinkingTime;
+  final int depth;
 }
 
 extension BotExtensions on BotOpponent {
