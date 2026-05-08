@@ -1,38 +1,38 @@
-import 'package:chess/core/errors/exceptions.dart';
 import 'package:chess/core/errors/failure.dart';
 import 'package:chess/core/utilities/result.dart';
 import 'package:chess/features/chess/domain/extensions/move_extensions.dart';
-import 'package:chess/features/chess/data/datasources/remote/chess_remote_datasource.dart';
+import 'package:chess/features/chess/domain/models/opponent.dart';
+import 'package:chess/http/configure_dio.dart';
+import 'package:chess/http/response/chess_engine_response.dart';
 import 'package:dartchess/dartchess.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:get_it/get_it.dart';
 
 @lazySingleton
 final class GetBotTurnUsecase {
-  final ChessRemoteDataSource _dataSource;
-
-  GetBotTurnUsecase({required ChessRemoteDataSource dataSource}) 
-    : _dataSource = dataSource;
-
-  Future<Result<Move, GetBotTurnFailure>> call(Position position) async {
+  Future<Result<Move, GetBotTurnFailure>> call(BotOpponent bot, Position position) async {
+    
     try {
-      
-      final result = await _dataSource.getMove(position.fen);
+      var response = await http.post(
+        "https://chess-api.com/v1",
+        data: {'fen': position.fen, 'depth': bot.depth, 'maxThinkingTime': bot.thinkingTime},
+        options: Options(connectTimeout: Duration(seconds: 3)),
+      );
+      var engineResponse = ChessEngineResponseMapper.fromMap(response.data);
 
-      final String bestMove;
+      Move? move = Move.parse(engineResponse.uci);
 
-      switch (result) {
-        case Success(value: final move):
-          bestMove = move;
-        case Failure(error: final failure):
-          print(failure);
-          return Result.failure(
-            GetBotTurnFailure(message: failure.message),
-          );
-      }
+      if (move == null) throw Exception("Was unable to parse UCI move returned by api...");
 
- 
-      // Simulate bot thinking delay
+      return Result.success(move);
+    } catch (e) {
+      debugPrint("Failed to get bot move from api. Fallback to internal bot implementation.");
+    }
+
+    // Fallback bot logic in case api not working
+    try {
+      // Emulate bot thinking delay
       await Future.delayed(Duration(milliseconds: 500));
       
       final legalMaps = position.legalMoves;
@@ -60,9 +60,8 @@ final class GetBotTurnUsecase {
       final randomTo = toSquares.squares
           .toList()
           .elementAt(random % toSquares.size.toInt());
-
-      // Construct the move
-      Move move = NormalMove.fromUci(bestMove);
+      
+      Move move = NormalMove(from: randomEntry.key, to: randomTo);
 
       // Handle promotion - always pick queen
       if (move.isPromotionPawnMove(position) && move is NormalMove) {

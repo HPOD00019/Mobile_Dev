@@ -46,7 +46,7 @@ void main() {
   final dummyBot = BotOpponent(
     id: dummyOpponentId,
     displayName: 'dummy bot',
-    difficulty: 1,
+    difficulty: 1, thinkingTime: 1, depth: 1,
   );
 
   provideDummy<Result<HumanOpponent, GetAppUserFailure>>(Result.success(dummyAppUser));
@@ -108,7 +108,9 @@ void main() {
         when(mockIBotRepository.getById(any)).thenAnswer((_) async => BotOpponent(
           id: OpponentId.restore(uuid: 'bot1'),
           displayName: 'Test Bot',
-          difficulty: 1,
+            difficulty: 1,
+            thinkingTime: 1,
+            depth: 1,
         ));
         return bloc;
       },
@@ -138,6 +140,8 @@ void main() {
         id: OpponentId.restore(uuid: 'bot1'),
         displayName: 'Bot',
         difficulty: 5,
+        thinkingTime: 1,
+        depth: 1,
       ),
       relatedSessionId: tSessionId,
     );
@@ -193,6 +197,8 @@ void main() {
             id: OpponentId.restore(uuid: 'bot1'),
             displayName: 'Bot',
             difficulty: 5,
+            thinkingTime: 1,
+            depth: 1,
           ),
           black: tAppUser,
           relatedSessionId: tSessionId,
@@ -218,6 +224,8 @@ void main() {
             id: OpponentId.restore(uuid: 'bot1'),
             displayName: 'Bot',
             difficulty: 5,
+            thinkingTime: 1,
+            depth: 1,
           ),
           relatedSessionId: tSessionId,
         ),

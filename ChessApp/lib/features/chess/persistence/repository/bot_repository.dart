@@ -8,9 +8,9 @@ import 'package:injectable/injectable.dart';
 final class BotRepository implements IBotRepository {
 
   final HashSet<BotOpponent> _bots = HashSet.from([
-    BotOpponent(id: OpponentId.createNew(), displayName: "Tyler", difficulty: 1),
-    BotOpponent(id: OpponentId.createNew(), displayName: "Josh", difficulty: 2),
-    BotOpponent(id: OpponentId.createNew(), displayName: "Wolt", difficulty: 3),
+    BotOpponent(id: OpponentId.createNew(), displayName: "Tyler", difficulty: 1, thinkingTime: 10, depth: 5),
+    BotOpponent(id: OpponentId.createNew(), displayName: "Josh", difficulty: 2, thinkingTime: 25, depth: 10),
+    BotOpponent(id: OpponentId.createNew(), displayName: "Wolt", difficulty: 3, thinkingTime: 50, depth: 15),
   ]);
   
   @override

@@ -45,6 +45,8 @@ void main() {
       id: OpponentId.restore(uuid: 'bot1'),
       displayName: 'Easy Bot',
       difficulty: 1,
+      thinkingTime: 1,
+      depth: 1,
     );
     when(mockBloc.state).thenReturn(BotsLoaded(bots: {bot}, selectedBot: bot));
     when(mockBloc.stream).thenAnswer((_) => const Stream.empty());

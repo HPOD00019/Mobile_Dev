@@ -33,7 +33,7 @@ class GetOpponentTurnUsecase {
     BotOpponent bot,
     Position position,
   ) async {
-    final result = await getBotTurnUsecase(position);
+    final result = await getBotTurnUsecase(bot, position);
     return result.mapError(
       (failure) => GetOpponentTurnFailure(message: failure.message),
     );

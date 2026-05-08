@@ -49,6 +49,7 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     final networkModule = _$NetworkModule();
     gh.lazySingleton<_i519.Client>(() => networkModule.httpClient);
+    gh.lazySingleton<_i118.GetBotTurnUsecase>(() => _i118.GetBotTurnUsecase());
     gh.lazySingleton<_i3.GetPlayerTurnUsecase>(
       () => _i3.GetPlayerTurnUsecase(),
     );
@@ -89,22 +90,17 @@ extension GetItInjectableX on _i174.GetIt {
         getAppUserUsecase: gh<_i1045.GetAppUserUsecase>(),
       ),
     );
-    gh.lazySingleton<_i259.ApiClient>(
-      () => networkModule.apiClient(gh<_i519.Client>()),
-    );
-    gh.lazySingleton<_i481.ChessRemoteDataSource>(
-      () => networkModule.chessRemoteDataSource(gh<_i259.ApiClient>()),
-    );
-    gh.lazySingleton<_i118.GetBotTurnUsecase>(
-      () => _i118.GetBotTurnUsecase(
-        dataSource: gh<_i481.ChessRemoteDataSource>(),
-      ),
-    );
     gh.lazySingleton<_i861.GetOpponentTurnUsecase>(
       () => _i861.GetOpponentTurnUsecase(
         getBotTurnUsecase: gh<_i118.GetBotTurnUsecase>(),
         getPlayerTurnUsecase: gh<_i3.GetPlayerTurnUsecase>(),
       ),
+    );
+    gh.lazySingleton<_i259.ApiClient>(
+      () => networkModule.apiClient(gh<_i519.Client>()),
+    );
+    gh.lazySingleton<_i481.ChessRemoteDataSource>(
+      () => networkModule.chessRemoteDataSource(gh<_i259.ApiClient>()),
     );
     gh.factory<_i361.ChessMatchBloc>(
       () => _i361.ChessMatchBloc(
